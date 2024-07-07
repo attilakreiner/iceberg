@@ -90,7 +90,7 @@ public abstract class TestSqlBase {
     writeRecords.get(1).set(2, "2020-03-20");
 
     GenericAppenderHelper helper =
-        new GenericAppenderHelper(table, FileFormat.PARQUET, TEMPORARY_FOLDER);
+        new GenericAppenderHelper(table, FileFormat.PARQUET, TEMPORARY_FOLDER.getRoot().toPath());
 
     List<Record> expectedRecords = Lists.newArrayList();
     expectedRecords.add(writeRecords.get(0));
@@ -120,7 +120,7 @@ public abstract class TestSqlBase {
     expectedRecords.forEach(expectedRecord -> expectedRecord.set(2, "2020-03-20"));
 
     GenericAppenderHelper helper =
-        new GenericAppenderHelper(table, FileFormat.PARQUET, TEMPORARY_FOLDER);
+        new GenericAppenderHelper(table, FileFormat.PARQUET, TEMPORARY_FOLDER.getRoot().toPath());
     DataFile dataFile = helper.writeFile(TestHelpers.Row.of("2020-03-20", 0), expectedRecords);
     helper.appendToTable(dataFile);
 

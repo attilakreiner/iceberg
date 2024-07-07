@@ -78,7 +78,7 @@ public class TestIcebergSourceSql extends TestSqlBase {
     long baseTime = 1702382109000L;
 
     GenericAppenderHelper helper =
-        new GenericAppenderHelper(table, FileFormat.PARQUET, TEMPORARY_FOLDER);
+        new GenericAppenderHelper(table, FileFormat.PARQUET, TEMPORARY_FOLDER.getRoot().toPath());
 
     Record file1Record1 =
         generateRecord(Instant.ofEpochMilli(baseTime), baseTime + (1000 * 60 * 60 * 24 * 30L));
